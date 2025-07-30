@@ -407,4 +407,4 @@ async def message(ctx):
 
 # Lancement du bot
 token = os.getenv("TOKEN_BOT")
-bot.run(token)
+bot.run(MTM5NjkzODU3NzQ5MzA5ODUxNg.GOSDtx.b7tsq8x6CIrFmKKEzhxmCrj6Xy-iSoTwcg4Zxc)
