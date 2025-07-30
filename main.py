@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 import datetime
@@ -7,9 +6,7 @@ import asyncio
 import requests
 import pytz
 from keep_alive import keep_alive
-
 keep_alive()
-load_dotenv()
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -211,13 +208,13 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
             if now >= prep1_time:
                 if main_channel:
                     embed_prep1 = discord.Embed(
-                        title="⏳⚡ PUMP PREPARATION - STAGE 1 ⚡⏳",
-                        description="⚠️ A massive pump is on the way ! \n ✅ Double-check your setup \n 💼 Top up your wallet \n\n ⚔️ Stay alert and sharp \n 🚀 Timing is everything. Don’t miss the launch",
+                        title="⏳ Préparation PUMP 1 ⏳",
+                        description="Un pump va bientôt commencer, préparez-vous !",
                         color=0x95a5a6  # Gris
                     )
                     embed_prep1.set_footer(text="PUMP Signals powered by THE INSIDERS")
                     # Mention cachée dans content, mais pas dans embed
-                    await main_channel.send(content=f"<@&{PUMP_ROLE_ID}> GET READY !", embed=embed_prep1, allowed_mentions=discord.AllowedMentions.none())
+                    await main_channel.send(content=f"<@&{PUMP_ROLE_ID}>", embed=embed_prep1, allowed_mentions=discord.AllowedMentions.none())
                 prep1_sent = True
 
         # Préparation PUMP 2
@@ -226,12 +223,12 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
             if now >= prep2_time:
                 if main_channel:
                     embed_prep2 = discord.Embed(
-                        title="⏳⚡ PUMP PREPARATION - STAGE 2 ⚡⏳",
-                        description="⚠️ A massive pump is on the way !\n ⏰ The next ping will be the PUMP signal ! \n\n ✅ Double-check your setup \n 💼 Top up your wallet \n\n ⚔️ Stay alert and sharp \n 🚀 Timing is everything. Don’t miss the launch",
+                        title="⏳ Préparation PUMP 2 ⏳",
+                        description="Un pump va bientôt commencer, restez attentifs !",
                         color=0x95a5a6  # Gris
                     )
                     embed_prep2.set_footer(text="PUMP Signals powered by THE INSIDERS")
-                    await main_channel.send(content=f"<@&{PUMP_ROLE_ID}> GET READY !", embed=embed_prep2, allowed_mentions=discord.AllowedMentions.none())
+                    await main_channel.send(content=f"<@&{PUMP_ROLE_ID}>", embed=embed_prep2, allowed_mentions=discord.AllowedMentions.none())
                 prep2_sent = True
 
         # VIP message
@@ -240,51 +237,55 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
             if now >= vip_time:
                 if vip_channel:
                     embed_vip = discord.Embed(
-                        title="💎🚨 VIP PUMP ALERT 🚨💎",
+                        title="💎 Préparation du PUMP VIP 💎",
                         description=(
-                            f"**🪙 Coin :** `${coin}`\n"
-                            f"**🔗 Token Address :** {address}\n"
-                            f"**🏦 Exchange :** {exchange}\n\n"
-                            "⚠️ Important Reminder: Stay calm, trust the process, and don’t panic sell.Selling in 3 or 4 parts helps avoid major price drops and maximizes your gains. \n\n Be smart. Be early. Be VIP. 💼 🚀"
+                            f"<@&{VIP_ROLE_ID}> Le pump arrive bientôt !\n"
+                            f"**Coin :** ${coin}\n"
+                            f"**Exchange :** {exchange}\n"
+                            f"Adresse du token : {address}\n"
+                            "Restez calmes, ne vendez pas par peur, suivez le plan."
                         ),
                         color=0x8e44ad  # Violet VIP
                     )
                     embed_vip.set_footer(text="PUMP Signals powered by THE INSIDERS")
-                    await vip_channel.send(content=f"<@&{VIP_ROLE_ID}> It's pump time !", embed=embed_vip)
+                    await vip_channel.send(embed=embed_vip)
                 vip_sent = True
 
         # Début du pump
         if not start_sent and now >= start:
             if main_channel:
                 embed_start = discord.Embed(
-                    title="🚀🔥 THE PUMP IS LIVE NOW ! 🔥🚀",
+                    title="🚀 LE PUMP COMMENCE MAINTENANT ! 🚀",
                     description=(
-                        f"**💰 Selected Coin :** `${coin}`\n"
-                        f"**🏷️ Token Address :** `{address}`\n"
-                        f"**🏦 Exchange :** {exchange}\n\n"
-                        "📈 Strategy Reminder:To maximize your profits, avoid selling during the first dip. This helps prevent panic selling and keeps the price rising. \n\n 💎 Stay calm, follow the plan, and sell gradually (in 3 or 4 parts). \n\n Let's pump smart ! 💪 📊"
+                        f"**Coin sélectionné :** ${coin}\n"
+                        f"**Adresse du token :** {address}\n"
+                        f"**Exchange :** {exchange}\n\n"
+                        "Pour maximiser vos profits, évitez de vendre dès la première baisse.\n"
+                        "Cela évitera une vente générale.\n"
+                        "Bon PUMP 💪"
                     ),
                     color=0x2ecc71  # Vert
                 )
-                embed_start.set_author(name="", icon_url="")
+                embed_start.set_author(name="Signal de Pump", icon_url="https://i.imgur.com/4M34hi2.png")
                 embed_start.set_footer(text="PUMP Signals powered by THE INSIDERS")
-                await main_channel.send(content=f"<@&{PUMP_ROLE_ID}> It's pump time !", embed=embed_start)
+                await main_channel.send(content=f"<@&{PUMP_ROLE_ID}> C'est l'heure du pump !", embed=embed_start)
             start_sent = True
 
         # Fin du pump
         if not end_sent and now >= end:
             if main_channel:
                 embed_end = discord.Embed(
-                    title="🛑 END OF THE PUMP 🛑",
+                    title="⏹️ FIN DU PUMP ⏹️",
                     description=(
-                        f"💸 Coin : `${coin}`\n"
-                        "📉 The pump has officially ended ...\n 😌 Stay calm & avoid panic selling. \n\n 💎 Stay calm, follow the plan, and sell gradually (in 3 or 4 parts).\n\n 📊 Stick to the plan, and secure your profits smartly.\n🔒 Consistency beats emotion every time."
+                        f"**Coin :** ${coin}\n"
+                        "Le signal de fin du pump est donné.\n"
+                        "Restez calmes, ne vendez pas par peur, suivez le plan."
                     ),
                     color=0xe74c3c  # Rouge
                 )
-                embed_end.set_author(name="", icon_url="")
+                embed_end.set_author(name="Signal de Pump", icon_url="https://i.imgur.com/4M34hi2.png")
                 embed_end.set_footer(text="PUMP Signals powered by THE INSIDERS")
-                await main_channel.send(content=f"<@&{PUMP_ROLE_ID}> The pump is finished !", embed=embed_end)
+                await main_channel.send(content=f"<@&{PUMP_ROLE_ID}> Le pump est terminé !", embed=embed_end)
             end_sent = True
             break
 
@@ -298,20 +299,20 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
 CRYPTO_DATA = {
     "bitcoin": {
         "label": "Bitcoin",
-        "description": "",
-        "address": "bc1q4cpjy5ccxv3kzrjhdvzu6udzlsnd3tdkwcf9sw",
-        "qr_url": "https://imgur.com/85A8AdZ"
+        "description": "Adresse Bitcoin",
+        "address": "bc1qexampleaddress1234567890",
+        "qr_url": "https://i.imgur.com/bitcoin_qr.png"
     },
     "ethereum": {
         "label": "Ethereum",
-        "description": "",
-        "address": "0xE2E6653819dc4E5Ab2D35D12e3722E2550E9bC9e",
+        "description": "Adresse Ethereum",
+        "address": "0xExampleEthereumAddress1234567890",
         "qr_url": "https://i.imgur.com/ethereum_qr.png"
     },
     "solana": {
         "label": "Solana",
-        "description": "",
-        "address": "2EiASQv2gv9qpVrC6L3qwZ4DnDUiozrDtATR2abSTR8x",
+        "description": "Adresse Solana",
+        "address": "So1anaExampleAddress1234567890",
         "qr_url": "https://i.imgur.com/solana_qr.png"
     },
 }
@@ -322,17 +323,18 @@ class PaymentSelect(discord.ui.Select):
             discord.SelectOption(label=CRYPTO_DATA[c]["label"], description=CRYPTO_DATA[c]["description"], value=c)
             for c in CRYPTO_DATA
         ]
-        super().__init__(placeholder="Select a crypto address...", min_values=1, max_values=1, options=options)
+        super().__init__(placeholder="Choisissez une crypto...", min_values=1, max_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
         choix = self.values[0]
         data = CRYPTO_DATA[choix]
         embed = discord.Embed(
-            title="💎 VIP Payment Instructions",
+            title="💎 Paiement VIP",
             description=(
-                f"🚀 Ready to join the elite ? Unlock your access to the VIP zone now! \n\n 💰 Send **€200** in **{data['label']}** to the address below to activate your membership. \n\n 🔗 Address: `{data['address']}` \n\n📸 After sending, don't forget to share a screenshot of the transaction and the sender address with an admin for verification. \n"
+                f"Veuillez envoyer l'équivalent de **150€** pour le VIP en **{data['label']}**.\n\n"
+                f"**Adresse :** `{data['address']}`"
             ),
-            color=0xFF9900
+            color=0x00ff00
         )
         embed.set_image(url=data['qr_url'])
         await interaction.response.send_message(embed=embed, ephemeral=True)
@@ -345,9 +347,9 @@ class PaymentView(discord.ui.View):
 @bot.command()
 async def paiement(ctx):
     embed = discord.Embed(
-        title="💎 Payment for **EARLY DROP VIP** Access",
-        description="🚀 Want to be ahead of the game on every pump ? Gain exclusive access to the EARLY DROP VIP channel now ! \n\n 🔥 In this private channel, you'll get PUMP alerts before everyone else – giving you the chance to buy early and profit big. \n 💰 More speed = more gains. Simple. \n\n 🔐 To unlock access : \n 💶 Send the equivalent of `€200` in crypto to the address of your choice below. \n\n 📸 Once done, send a screenshot of the payment + the sending address to an admin to verify your access.\n\n 👇 Choose your preferred payment method below :",
-        color=0xFF9900
+        title="💳 Paiement accès EARLY DROP VIP",
+        description="Pour accéder au salon avec les drops en avance, payez en crypto l'équivalent de **150€**.\n\nSélectionnez une adresse crypto ci-dessous :",
+        color=0x3498db
     )
     await ctx.send(embed=embed, view=PaymentView())
 
@@ -406,5 +408,5 @@ async def message(ctx):
 
 
 # Lancement du bot
-token = os.getenv("TOKEN_BOT")
-bot.run(MTM5NjkzODU3NzQ5MzA5ODUxNg.GOSDtx.b7tsq8x6CIrFmKKEzhxmCrj6Xy-iSoTwcg4Zxc)
+token = os.environ['TOKEN_BOT']
+bot.run(token)
