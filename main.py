@@ -418,3 +418,57 @@ async def message(ctx):
 # Lancement du bot
 token = os.getenv("TOKEN_BOT")
 bot.run(token)
+
+
+# Sup messages
+@bot.command()
+async def purge(ctx):
+    await ctx.message.delete()
+
+    if ctx.author.id not in AUTHORIZED_USER_ID:
+        try:
+            await ctx.author.send("⛔ You do not have permission to use this command.")
+        except discord.Forbidden:
+            pass
+        return
+
+    user = ctx.author
+
+    def check(m):
+        return m.author == user and isinstance(m.channel, discord.DMChannel)
+
+    try:
+        await user.send("🧹 Message Purge Setup:")
+
+        channel_id_str = await ask_question(user, "🔢 Enter the **channel ID** where messages should be deleted:", check)
+        if channel_id_str is None:
+            return
+
+        try:
+            channel_id = int(channel_id_str)
+            channel = bot.get_channel(channel_id)
+            if channel is None:
+                await user.send("❌ Channel not found or bot has no access.")
+                return
+        except ValueError:
+            await user.send("❌ Channel ID must be a number.")
+            return
+
+        amount_str = await ask_question(user, "✏️ How many **messages** should be deleted?", check)
+        if amount_str is None:
+            return
+
+        try:
+            amount = int(amount_str)
+            if amount <= 0:
+                await user.send("❌ Number must be greater than 0.")
+                return
+        except ValueError:
+            await user.send("❌ Invalid number.")
+            return
+
+        deleted = await channel.purge(limit=amount)
+        await user.send(f"✅ Successfully deleted {len(deleted)} messages in <#{channel_id}>.")
+
+    except discord.Forbidden:
+        await ctx.send("❌ I couldn't DM you. Please enable DMs from server members.", delete_after=10)
