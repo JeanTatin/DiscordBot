@@ -427,9 +427,9 @@ async def purge(ctx):
 
     if ctx.author.id not in AUTHORIZED_USER_ID:
         try:
-            await ctx.author.send("⛔ You do not have permission to use this command.")
+            await ctx.author.send("⛔ Tu n'as pas la permission d'utiliser cette commande.")
         except discord.Forbidden:
-            pass
+            return
         return
 
     user = ctx.author
@@ -438,37 +438,41 @@ async def purge(ctx):
         return m.author == user and isinstance(m.channel, discord.DMChannel)
 
     try:
-        await user.send("🧹 Message Purge Setup:")
+        await user.send("🧹 Configuration de la suppression de messages :")
 
-        channel_id_str = await ask_question(user, "🔢 Enter the **channel ID** where messages should be deleted:", check)
+        # Demander l'ID du salon
+        channel_id_str = await ask_question(user, "📢 Quel est l'**ID du salon** dans lequel tu veux supprimer des messages ?", check)
         if channel_id_str is None:
             return
 
         try:
             channel_id = int(channel_id_str)
-            channel = bot.get_channel(channel_id)
-            if channel is None:
-                await user.send("❌ Channel not found or bot has no access.")
-                return
         except ValueError:
-            await user.send("❌ Channel ID must be a number.")
+            await user.send("❌ L'ID du salon doit être un nombre.")
             return
 
-        amount_str = await ask_question(user, "✏️ How many **messages** should be deleted?", check)
+        channel = bot.get_channel(channel_id)
+        if channel is None:
+            await user.send("❌ Salon introuvable ou le bot n'y a pas accès.")
+            return
+
+        # Demander combien de messages supprimer
+        amount_str = await ask_question(user, "🗑️ Combien de **messages** veux-tu supprimer ?", check)
         if amount_str is None:
             return
 
         try:
             amount = int(amount_str)
             if amount <= 0:
-                await user.send("❌ Number must be greater than 0.")
+                await user.send("❌ Le nombre doit être supérieur à 0.")
                 return
         except ValueError:
-            await user.send("❌ Invalid number.")
+            await user.send("❌ Le nombre de messages doit être un entier.")
             return
 
+        # Supprimer les messages
         deleted = await channel.purge(limit=amount)
-        await user.send(f"✅ Successfully deleted {len(deleted)} messages in <#{channel_id}>.")
+        await user.send(f"✅ {len(deleted)} messages ont été supprimés dans le salon <#{channel_id}>.")
 
     except discord.Forbidden:
-        await ctx.send("❌ I couldn't DM you. Please enable DMs from server members.", delete_after=10)
+        await ctx.send("❌ Impossible de t'envoyer un message privé. Active-les dans tes paramètres Discord.", delete_after=10)
