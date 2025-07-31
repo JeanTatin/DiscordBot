@@ -249,7 +249,7 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
                             "⚠️ Important Reminder : Stay calm, trust the process, and don’t panic sell ! Selling in 3 or 4 parts helps avoid major price drops and maximizes your gains. \n\n"
                             ":flag_fr: **Français :** \n"
                             "⚠️ Rappel important : Reste calme, fais confiance au processus, et ne vends pas dans la panique ! Vendre en 3 ou 4 étapes permet d’éviter les fortes chutes de prix et de maximiser tes gains.\n\n"
-                            "\n\n Be smart. Be early. Be VIP. 💼 🚀"
+                            "Be smart. Be early. Be VIP. 💼 🚀"
                         ),
                         color=0x8e44ad  # Violet VIP
                     )
@@ -334,7 +334,7 @@ class PaymentSelect(discord.ui.Select):
         embed = discord.Embed(
             title="💎 VIP Payment Instructions",
             description=(
-                f"🚀 Ready to join the elite ? Unlock your access to the VIP zone now! \n\n 💰 Send **€200** in **{data['label']}** to the address below to activate your membership. \n\n 🔗 Address: `{data['address']}` \n\n📸 After sending, don't forget to share a screenshot of the transaction and the sender address with an admin for verification. \n"
+                f":flag_gb: **English :** \n 🚀 Ready to join the elite ? Unlock your access to the VIP zone now! \n\n 💰 Send **€200** in **{data['label']}** to the address below to activate your membership. \n\n 🔗 Address: `{data['address']}` \n\n📸 After sending, don't forget to share a screenshot of the transaction and the sender address with an admin for verification. \n\n\n :flag_fr: **Français :** \n 🚀 Prêt à rejoindre l’élite ? Déverrouille ton accès à la zone VIP maintenant !\n\n💰 Envoie **200€** en **{data['label']}** à l’adresse ci-dessous pour activer ton adhésion.\n\n🔗 Adresse : `{data['address']}`\n\n📸 Une fois le paiement effectué, pense à envoyer une capture d’écran de la transaction ainsi que l’adresse d’envoi à un admin pour vérification.\n"
             ),
             color=0xFF9900
         )
@@ -350,7 +350,7 @@ class PaymentView(discord.ui.View):
 async def paiement(ctx):
     embed = discord.Embed(
         title="💎 Payment for **EARLY DROP VIP** Access",
-        description="🚀 Want to be ahead of the game on every pump ? Gain exclusive access to the EARLY DROP VIP channel now ! \n\n 🔥 In this private channel, you'll get PUMP alerts before everyone else – giving you the chance to buy early and profit big. \n 💰 More speed = more gains. Simple. \n\n 🔐 To unlock access : \n 💶 Send the equivalent of `€200` in crypto to the address of your choice below. \n\n 📸 Once done, send a screenshot of the payment + the sending address to an admin to verify your access.\n\n 👇 Choose your preferred payment method below :",
+        description=":flag_gb: **English :** \n🚀 Want to be ahead of the game on every pump ? Gain exclusive access to the EARLY DROP VIP channel now ! \n\n 🔥 In this private channel, you'll get PUMP alerts before everyone else – giving you the chance to buy early and profit big. \n 💰 More speed = more gains. Simple. \n\n 🔐 To unlock access : \n 💶 Send the equivalent of `€200` in crypto to the address of your choice below. \n\n 📸 Once done, send a screenshot of the payment + the sending address to an admin to verify your access.\n\n\n :flag_fr: **Français :** \n 🚀 Tu veux prendre de l’avance sur chaque pump ? Obtiens un accès exclusif au salon EARLY DROP VIP maintenant !\n\n🔥 Dans ce salon privé, tu recevras les alertes PUMP avant tout le monde – te donnant l’opportunité d’acheter tôt et de faire un gros profit.\n💰 Plus de rapidité = plus de gains. Simple.\n\n🔐 Pour débloquer l’accès :\n💶 Envoie l’équivalent de `200€` en crypto à l’adresse de ton choix ci-dessous.\n\n📸 Une fois fait, envoie une capture d’écran du paiement + l’adresse d’envoi à un admin pour valider ton accès.\n\n 👇 Choose your preferred payment method below :",
         color=0xFF9900
     )
     await ctx.send(embed=embed, view=PaymentView())
