@@ -212,7 +212,7 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
                 if main_channel:
                     embed_prep1 = discord.Embed(
                         title="⏳⚡ PUMP PREPARATION - STAGE 1 ⚡⏳",
-                        description="⚠️ A massive pump is on the way ! \n ✅ Double-check your setup \n 💼 Top up your wallet \n\n ⚔️ Stay alert and sharp \n 🚀 Timing is everything. Don’t miss the launch",
+                        description="⚠️ A massive pump is on the way ! \n ✅ Double-check your setup \n 💼 Top up your wallet \n\n ⚔️ Stay alert and sharp \n 🚀 Timing is everything. Don’t miss the launch \n\n\n :flag_fr: **Français :** \n ⚠️ Un pump massif est en approche ! \n ✅ Vérifie bien ta configuration \n 💼 Approvisionne ton portefeuille \n\n ⚔️ Reste alerte et concentré 🚀 Le timing est crucial. Ne rate pas le lancement",
                         color=0x95a5a6  # Gris
                     )
                     embed_prep1.set_footer(text="PUMP Signals powered by THE INSIDERS")
