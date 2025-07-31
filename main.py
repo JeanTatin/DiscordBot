@@ -386,7 +386,7 @@ async def message(ctx):
             await user.send("❌ L'ID du salon doit être un nombre.")
             return
 
-        message_content = await ask_question(user, "✉️ Quel est le **message** à envoyer ?", check)
+        message_content = await ask_question(user, "✉️ Quel est le **message** à envoyer ? TEST EVO EN LIGNE", check)
         if message_content is None:
             return
 
