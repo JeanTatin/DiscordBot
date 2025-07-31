@@ -212,7 +212,7 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
                 if main_channel:
                     embed_prep1 = discord.Embed(
                         title="⏳⚡ PUMP PREPARATION - STAGE 1 ⚡⏳",
-                        description="⚠️ A massive pump is on the way ! \n ✅ Double-check your setup \n 💼 Top up your wallet \n\n ⚔️ Stay alert and sharp \n 🚀 Timing is everything. Don’t miss the launch \n\n\n :flag_fr: **Français :** \n ⚠️ Un pump massif est en approche ! \n ✅ Vérifie bien ta configuration \n 💼 Approvisionne ton portefeuille \n\n ⚔️ Reste alerte et concentré 🚀 Le timing est crucial. Ne rate pas le lancement",
+                        description=":flag_gb: **English :** \n ⚠️ A massive pump is on the way ! \n ✅ Double-check your setup. \n 💼 Top up your wallet. \n\n ⚔️ Stay alert and sharp. \n 🚀 Timing is everything. Don’t miss the launch !\n\n\n :flag_fr: **Français :** \n ⚠️ Un pump massif est en approche ! \n ✅ Vérifie bien ta configuration. \n 💼 Approvisionne ton portefeuille. \n\n ⚔️ Reste alerte et concentré. \n🚀 Le timing est crucial. Ne rate pas le lancement !",
                         color=0x95a5a6  # Gris
                     )
                     embed_prep1.set_footer(text="PUMP Signals powered by THE INSIDERS")
@@ -227,7 +227,7 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
                 if main_channel:
                     embed_prep2 = discord.Embed(
                         title="⏳⚡ PUMP PREPARATION - STAGE 2 ⚡⏳",
-                        description="⚠️ A massive pump is on the way !\n ⏰ The next ping will be the PUMP signal ! \n\n ✅ Double-check your setup \n 💼 Top up your wallet \n\n ⚔️ Stay alert and sharp \n 🚀 Timing is everything. Don’t miss the launch",
+                        description=":flag_gb: **English :** \n ⚠️ A massive pump is on the way !\n ⏰ The next ping will be the PUMP signal ! \n\n ✅ Double-check your setup. \n 💼 Top up your wallet. \n\n ⚔️ Stay alert and sharp. \n 🚀 Timing is everything. Don’t miss the launch ! \n\n\n :flag_fr: **Français :** \n ⚠️ Un pump massif est en approche ! \n ⏰ Le prochain ping sera le signal du PUMP ! \n\n ✅ Vérifie bien ta configuration. \n 💼 Approvisionne ton portefeuille. \n\n ⚔️ Reste alerte et concentré. \n 🚀 Le timing est crucial. Ne rate pas le lancement !",
                         color=0x95a5a6  # Gris
                     )
                     embed_prep2.set_footer(text="PUMP Signals powered by THE INSIDERS")
@@ -245,7 +245,11 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
                             f"**🪙 Coin :** `${coin}`\n"
                             f"**🔗 Token Address :** `{address}`\n"
                             f"**🏦 Exchange :** `{exchange}`\n\n"
-                            "⚠️ Important Reminder: Stay calm, trust the process, and don’t panic sell.Selling in 3 or 4 parts helps avoid major price drops and maximizes your gains. \n\n Be smart. Be early. Be VIP. 💼 🚀"
+                            ":flag_gb: **English :** \n"
+                            "⚠️ Important Reminder : Stay calm, trust the process, and don’t panic sell ! Selling in 3 or 4 parts helps avoid major price drops and maximizes your gains. \n\n"
+                            ":flag_fr: **Français :** \n"
+                            "⚠️ Rappel important : Reste calme, fais confiance au processus, et ne vends pas dans la panique ! Vendre en 3 ou 4 étapes permet d’éviter les fortes chutes de prix et de maximiser tes gains.\n\n"
+                            "\n\n Be smart. Be early. Be VIP. 💼 🚀"
                         ),
                         color=0x8e44ad  # Violet VIP
                     )
@@ -386,7 +390,7 @@ async def message(ctx):
             await user.send("❌ L'ID du salon doit être un nombre.")
             return
 
-        message_content = await ask_question(user, "✉️ Quel est le **message** à envoyer ? TEST EVO EN LIGNE", check)
+        message_content = await ask_question(user, "✉️ Quel est le **message** à envoyer ?", check)
         if message_content is None:
             return
 
