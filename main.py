@@ -266,7 +266,10 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
                         f"**💰 Selected Coin :** `${coin}`\n"
                         f"**🏷️ Token Address :** `{address}`\n"
                         f"**🏦 Exchange :** `{exchange}`\n\n"
-                        "📈 Strategy Reminder:To maximize your profits, avoid selling during the first dip. This helps prevent panic selling and keeps the price rising. \n\n 💎 Stay calm, follow the plan, and sell gradually (in 3 or 4 parts). \n\n Let's pump smart ! 💪 📊"
+                        ":flag_gb: **English :** \n"
+                        "📈 Strategy Reminder:To maximize your profits, avoid selling during the first dip. This helps prevent panic selling and keeps the price rising. \n\n 💎 Stay calm, follow the plan, and sell gradually (in 3 or 4 parts). \n\n Let's pump smart ! 💪 📊\n\n\n"
+                        ":flag_fr: **Français :** \n"
+                        "📈 Rappel de stratégie : Pour maximiser tes profits, évite de vendre lors de la première baisse. Cela permet d’éviter les ventes paniquées et de maintenir la hausse du prix.\n\n💎 Reste calme, suis le plan, et vends progressivement (en 3 ou 4 étapes).\n\nPumpons intelligemment ! 💪 📊"
                     ),
                     color=0x2ecc71  # Vert
                 )
@@ -281,8 +284,11 @@ async def schedule_pump(coin, address, exchange, start, end, vip, vip_advance, p
                 embed_end = discord.Embed(
                     title="🛑 END OF THE PUMP 🛑",
                     description=(
-                        f"💸 Coin : `${coin}`\n"
-                        "📉 The pump has officially ended ...\n 😌 Stay calm & avoid panic selling. \n\n 💎 Stay calm, follow the plan, and sell gradually (in 3 or 4 parts).\n\n 📊 Stick to the plan, and secure your profits smartly.\n🔒 Consistency beats emotion every time."
+                        f"💸 Coin : `${coin}`\n\n"
+                        ":flag_gb: **English :** \n"
+                        "📉 The pump has officially ended ...\n 😌 Stay calm & avoid panic selling. \n\n 💎 Stay calm, follow the plan, and sell gradually (in 3 or 4 parts).\n\n 📊 Stick to the plan, and secure your profits smartly.\n🔒 Consistency beats emotion every time.\n\n\n"
+                        ":flag_fr: **Français :** \n"
+                        "📉 Le pump est officiellement terminé...\n😌 Reste calme et évite de vendre dans la panique.\n\n💎 Reste calme, suis le plan et vends progressivement (en 3 ou 4 étapes).\n\n📊 Respecte le plan et sécurise tes profits intelligemment.\n🔒 La régularité l’emporte toujours sur l’émotion."
                     ),
                     color=0xe74c3c  # Rouge
                 )
