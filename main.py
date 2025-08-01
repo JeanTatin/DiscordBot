@@ -415,11 +415,6 @@ async def message(ctx):
         await ctx.send("❌ Impossible de t'envoyer un message privé. Active-les !", delete_after=10)
 
 
-# Lancement du bot
-token = os.getenv("TOKEN_BOT")
-bot.run(token)
-
-
 # Sup messages
 @bot.command()
 async def purge(ctx):
@@ -476,3 +471,8 @@ async def purge(ctx):
 
     except discord.Forbidden:
         await ctx.send("❌ Impossible de t'envoyer un message privé. Active-les dans tes paramètres Discord.", delete_after=10)
+
+# Lancement du bot
+token = os.getenv("TOKEN_BOT")
+bot.run(token)
+
